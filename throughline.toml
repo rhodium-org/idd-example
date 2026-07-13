@@ -19,13 +19,12 @@ format_version = 2
 # sees it. To develop a source and its consumer side by side, a local `path` may be
 # used instead of `url` + `ref`.
 #
-# The canonical, readable form pins a published edition tag, e.g. `ref = "v4.0.3"`.
-# This example pins the current commit of the thin v4.0.3 slice, because that slice
-# has not yet cut an edition tag; swap it for the tag once it has.
+# The `ref` pins a published edition tag: moving to a new upstream edition is a
+# one-line change here, and the borrowed graph is never edited in place.
 [[sources]]
 namespace = "asvs"
 url = "https://github.com/rhodium-org/standard-asvs"
-ref = "3a098f74b9d54a9709eb5dea3b641e51a7aa39c4"
+ref = "v4.0.3"
 
 [grounding]
 root_types = ["intent"]
