@@ -69,3 +69,11 @@ implemented = ["verified", "suspect", "rejected", "deleted"]
 verified    = ["implemented", "suspect", "deleted"]
 suspect     = ["approved", "ratified", "implemented", "verified", "rejected", "deleted"]
 rejected    = ["draft", "deleted"]
+
+# `tl-compose docs` regenerates docs/spec.md from this project's own graph and
+# `tl-compose docs --check` gates its freshness. Publishing activates the
+# `unpublished` rule for this project's local items — every live normative local
+# item must be referenced by a published document. (Borrowed asvs clauses are not
+# this project's to publish; they are covered by the source's own docs.)
+[docs]
+paths = ["docs/*.md", "README.md"]

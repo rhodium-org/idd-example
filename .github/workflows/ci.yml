@@ -25,3 +25,8 @@ jobs:
       # graph. This fetches the source from its git origin, so the job needs network.
       - name: Composition gate (the composed graph must stay sound)
         run: tl-compose check --strict
+
+      # The published document (docs/spec.md) and the README count badges must
+      # still match this project's own graph.
+      - name: Docs freshness gate
+        run: tl-compose docs --check
