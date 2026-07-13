@@ -21,6 +21,11 @@ graph is gated by `tl-compose check --strict` and the document by `tl-compose do
 --check`. These counts are rendered from the live spine by the `tl:count` directive,
 so they cannot drift.
 
+> **Want to run it?** [`SEE_IDD_IN_ACTION.md`](SEE_IDD_IN_ACTION.md) is a hands-on,
+> step-by-step tour: compose the standard, validate the union, trace a requirement to
+> its intent and back, ask "what breaks if I change this?", and see how an AI agent
+> uses the graph to find what's *missing*.
+
 ## What it demonstrates
 
 - **Adopt a standard by reference, not by copy.** The ASVS source is named in
