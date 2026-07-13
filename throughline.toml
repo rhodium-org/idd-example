@@ -1,0 +1,72 @@
+[project]
+name = "Council housing resident service (throughline-compose example)"
+format_version = 2
+
+# A worked example of a *composed* project. This is an ordinary throughline
+# project — its own product requirements live under intents/, user-requirements/
+# and system-requirements/ — that additionally adopts a published standard by
+# reference. The OWASP ASVS source is bound to the namespace `asvs` below, and
+# individual product requirements cite ASVS clauses as `asvs:SR-NNNN`.
+#
+# Drive this project with `tl-compose`, never bare `tl`: the composition-aware
+# `check` merges the sources into one union graph and validates it. Bare `tl`
+# fails fast the moment it meets a namespace-qualified reference it cannot resolve.
+
+# The source. The consumer picks the namespace (`import X as Y`); the source does
+# not name itself. A source is adopted by reference — a git `url` pinned to an
+# edition with `ref` — never vendored or copied. tl-compose fetches the pinned ref
+# into a per-user cache outside this project, so the consumer's own item scan never
+# sees it. To develop a source and its consumer side by side, a local `path` may be
+# used instead of `url` + `ref`.
+#
+# The canonical, readable form pins a published edition tag, e.g. `ref = "v4.0.3"`.
+# This example pins the current commit of the thin v4.0.3 slice, because that slice
+# has not yet cut an edition tag; swap it for the tag once it has.
+[[sources]]
+namespace = "asvs"
+url = "https://github.com/rhodium-org/standard-asvs"
+ref = "3a098f74b9d54a9709eb5dea3b641e51a7aa39c4"
+
+[grounding]
+root_types = ["intent"]
+delivery_roots = ["intent"]
+ground_link_types = ["derives_from", "implements"]
+ai_origins = ["ai", "hybrid"]
+
+# The union is governed by THIS schema, so the consumer must declare types, links
+# and statuses that are a superset of what every source uses internally. The ASVS
+# source marks source_ref/level required on its own items; here they are optional,
+# which still accepts the source's items (they carry them) while not forcing the
+# consumer's own items to.
+[types.user_requirement]
+attrs.source_ref = { required = false }
+
+[types.system_requirement]
+attrs.source_ref = { required = false }
+attrs.level = { required = false }
+
+[links]
+types = ["derives_from", "implements", "satisfies", "relates"]
+
+[link_rules]
+derives_from = { from = ["user_requirement"], to = ["intent"] }
+implements   = { from = ["system_requirement"], to = ["user_requirement"] }
+# The borrowed-clause link: a product requirement satisfies an ASVS verification
+# requirement. `satisfies` is a traceability link, not a grounding link, so a
+# product SR still grounds through `implements`, not through the standard.
+satisfies    = { from = ["system_requirement"], to = ["system_requirement"] }
+
+[status]
+values = ["proposed", "draft", "deferred", "approved", "ratified", "implemented",
+          "verified", "suspect", "rejected", "deleted"]
+
+[transitions]
+proposed    = ["draft", "approved", "ratified", "deferred", "rejected", "deleted"]
+draft       = ["approved", "deferred", "rejected", "deleted"]
+deferred    = ["draft", "approved", "rejected", "deleted"]
+approved    = ["ratified", "implemented", "deferred", "suspect", "rejected", "deleted"]
+ratified    = ["implemented", "suspect", "rejected", "deleted"]
+implemented = ["verified", "suspect", "rejected", "deleted"]
+verified    = ["implemented", "suspect", "deleted"]
+suspect     = ["approved", "ratified", "implemented", "verified", "rejected", "deleted"]
+rejected    = ["draft", "deleted"]

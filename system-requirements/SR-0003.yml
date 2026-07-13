@@ -1,0 +1,12 @@
+uid: SR-0003
+type: system_requirement
+status: approved
+title: Reject credentials found in breach corpora
+text: At registration and password change, the chosen password is checked against a
+  set of known-breached passwords and rejected on a match, so a resident cannot pick
+  a credential already circulating in public leak sets.
+links:
+- target: UR-0001
+  type: implements
+- target: "asvs:SR-0006"
+  type: satisfies

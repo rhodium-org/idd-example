@@ -1,0 +1,11 @@
+uid: SR-0001
+type: system_requirement
+status: approved
+title: Enforce a minimum password length of 12 characters
+text: Registration and password-change flows reject any password shorter than 12
+  characters (after consecutive spaces are collapsed), enforced server-side.
+links:
+- target: UR-0001
+  type: implements
+- target: "asvs:SR-0003"
+  type: satisfies
