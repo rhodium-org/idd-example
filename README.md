@@ -1,6 +1,6 @@
 # idd-example
 
-A worked example of a **composed** [throughline](https://github.com/rhodium-org/throughline)
+A worked example of a **composed** [throughline](https://github.com/timebacksolutions/throughline)
 project: an ordinary requirements graph that adopts a published standard **by
 reference** and works the combined graph as one, using
 [throughline-compose](https://github.com/timebacksolutions/throughline-compose).
