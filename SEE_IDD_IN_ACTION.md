@@ -12,7 +12,7 @@ Everything here is read-only — nothing you run changes the repo.
 ## Setup
 
 ```sh
-pip install "throughline-compose @ git+https://github.com/rhodium-org/throughline-compose@main"
+pip install "throughline-compose @ git+https://github.com/timebacksolutions/throughline-compose@main"
 cd idd-example
 ```
 
