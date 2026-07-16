@@ -7,7 +7,7 @@ reference** and works the combined graph as one, using
 
 The scenario is a council-housing resident service. Its own product requirements
 live in this repo; its authentication requirements each cite a clause of the OWASP
-**ASVS**, pulled in from the [`standard-asvs`](https://github.com/rhodium-org/standard-asvs)
+**ASVS**, pulled in from the [`throughline-asvs`](https://github.com/timebacksolutions/throughline-asvs)
 source under the namespace `asvs`.
 
 This project's own graph is a small grounded spine of
@@ -81,7 +81,7 @@ borrowed graph is never edited in place:
 ```toml
 [[sources]]
 namespace = "asvs"
-url = "https://github.com/rhodium-org/standard-asvs"
+url = "https://github.com/timebacksolutions/throughline-asvs"
 ref = "v4.0.3"
 ```
 
