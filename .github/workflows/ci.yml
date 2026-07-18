@@ -16,10 +16,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      # Installs tl-compose and, transitively, throughline (tl). Pinned to the
-      # compose repo's main until throughline-compose is published to PyPI.
+      # Installs tl-compose and, transitively, throughline (tl) from PyPI, so the
+      # job needs no credentials for the (private) compose tooling repo.
       - name: Install throughline-compose
-        run: pip install "throughline-compose @ git+https://github.com/timebacksolutions/throughline-compose@main"
+        run: pip install throughline-compose
 
       # Composes the pinned `asvs` source into the union and validates the whole
       # graph. This fetches the source from its git origin, so the job needs network.

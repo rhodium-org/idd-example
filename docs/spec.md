@@ -23,6 +23,8 @@ and gate freshness in CI with `tl-compose docs --check`.
 **UR-0001 — Residents authenticate securely** — `user_requirement`, status `approved`
 
 > A resident signs in with credentials that are held to the same strength, length and breach-resistance controls a security assessor would expect, so that an account cannot be trivially guessed or reused from a leaked password set.
+
+*Derives from:* INT-0001
 <!-- tl:end -->
 
 ## System requirements
@@ -31,18 +33,27 @@ and gate freshness in CI with `tl-compose docs --check`.
 **SR-0001 — Enforce a minimum password length of 12 characters** — `system_requirement`, status `approved`
 
 > Registration and password-change flows reject any password shorter than 12 characters (after consecutive spaces are collapsed), enforced server-side.
+
+*Implements:* UR-0001
+*Satisfies:* asvs:SR-0003 (V2.1.1)
 <!-- tl:end -->
 
 <!-- tl:item SR-0002 -->
 **SR-0002 — Accept long passphrases without truncation** — `system_requirement`, status `approved`
 
 > The account service accepts passwords of at least 64 characters, rejects only those beyond 128 characters, and never silently truncates before hashing, so a resident using a passphrase or password manager is not quietly weakened.
+
+*Implements:* UR-0001
+*Satisfies:* asvs:SR-0004 (V2.1.2)
 <!-- tl:end -->
 
 <!-- tl:item SR-0003 -->
 **SR-0003 — Reject credentials found in breach corpora** — `system_requirement`, status `approved`
 
 > At registration and password change, the chosen password is checked against a set of known-breached passwords and rejected on a match, so a resident cannot pick a credential already circulating in public leak sets.
+
+*Implements:* UR-0001
+*Satisfies:* asvs:SR-0006 (V2.1.7)
 <!-- tl:end -->
 
 ## Coverage
